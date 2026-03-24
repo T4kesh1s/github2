@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computação em Nuvem</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --wine: #7a0f24;
+        --wine-2: #5e0b1a;
+        --wine-3: #a31839;
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --muted: rgba(26, 26, 26, 0.72);
+        --border: rgba(122, 15, 36, 0.22);
+        --card-bg: #ffffff;
+      }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        background: linear-gradient(180deg, #fff7f9 0%, var(--bg) 30%, #f8f9fb 100%);
+        color: var(--text);
+      }
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      header,
+      footer.site-footer {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 18px 20px;
+      }
+      header {
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(120deg, var(--wine) 0%, var(--wine-3) 100%);
+        color: #ffffff;
+      }
+      header .brand {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        margin: 18px 0 10px;
+        color: var(--wine-2);
+      }
+      h1 {
+        margin: 0 0 12px;
+        letter-spacing: -0.02em;
+        color: var(--wine-2);
+      }
+      p {
+        margin: 0 0 18px;
+      }
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      li {
+        margin: 8px 0;
+      }
+      footer {
+        margin-top: 28px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+      footer.site-footer {
+        margin-top: 0;
+        border-top: 1px solid var(--border);
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 18px;
+        background: var(--card-bg);
+        box-shadow: 0 10px 30px rgba(122, 15, 36, 0.10);
+      }
+      .hero-image {
+        width: 100%;
+        height: 290px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border: 1px solid var(--border);
+      }
+      .image-grid {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 12px;
+      }
+      .image-grid img {
+        width: 100%;
+        height: 165px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      .cta-wrap {
+        margin-top: 20px;
+      }
+      .cta-button {
+        display: inline-block;
+        border: 0;
+        border-radius: 999px;
+        background: var(--wine);
+        color: #ffffff;
+        font-weight: 600;
+        padding: 12px 20px;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        box-shadow: 0 8px 20px rgba(122, 15, 36, 0.24);
+      }
+      .cta-button:hover {
+        background: var(--wine-2);
+        transform: translateY(-1px);
+      }
+      strong {
+        color: var(--wine-2);
+      }
+      @media (max-width: 560px) {
+        .hero-image {
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">Computação em Nuvem</div>
+    </header>
+    <main>
+      <div class="card">
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
+          alt="Infraestrutura digital conectada representando computacao em nuvem"
+        />
+        <h1>O que é Computação em Nuvem?</h1>
+        <p>
+          Computação em nuvem é a forma de usar recursos de TI (como servidores, armazenamento, bancos
+          de dados e softwares) pela internet, sob demanda, sem precisar comprar e manter toda a
+          infraestrutura localmente. Em geral, você paga apenas pelo que usa, com facilidade para
+          aumentar ou reduzir capacidade conforme a necessidade.
+        </p>
+
+        <h2>Exemplos de serviços em nuvem</h2>
+        <ul>
+          <li><strong>Amazon Web Services (AWS)</strong> — computação, armazenamento, bancos de dados e mais</li>
+          <li><strong>Microsoft Azure</strong> — serviços para apps, dados, IA e infraestrutura</li>
+          <li><strong>Google Cloud Platform (GCP)</strong> — serviços de computação, dados e machine learning</li>
+          <li><strong>Google Drive</strong> — armazenamento e compartilhamento de arquivos</li>
+          <li><strong>Dropbox</strong> — sincronização e backup de arquivos na nuvem</li>
+        </ul>
+        <div class="cta-wrap">
+          <a class="cta-button" href="https://aws.amazon.com/pt/what-is-cloud-computing/" target="_blank" rel="noopener noreferrer">
+            Saiba mais sobre computacao em nuvem
+          </a>
+        </div>
+        <div class="image-grid" aria-label="Imagens relacionadas a computacao em nuvem">
+          <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+            alt="Servidores em data center para computacao em nuvem"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80"
+            alt="Codigo e desenvolvimento de software em nuvem"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80"
+            alt="Planejamento e monitoramento de servicos digitais"
+          />
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">Abra este arquivo no navegador para visualizar a página.</footer>
+  </body>
+</html>
