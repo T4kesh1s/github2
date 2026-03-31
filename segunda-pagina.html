@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Segunda Página</title>
+    <style>
+      :root {
+        --wine: #7a0f24;
+        --wine-2: #5e0b1a;
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --border: rgba(122, 15, 36, 0.22);
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: linear-gradient(180deg, #fff7f9 0%, var(--bg) 60%, #f8f9fb 100%);
+        color: var(--text);
+      }
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 22px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(122, 15, 36, 0.1);
+      }
+      h1 {
+        margin-top: 0;
+        color: var(--wine-2);
+      }
+      .cta-button {
+        display: inline-block;
+        border-radius: 999px;
+        background: var(--wine);
+        color: #fff;
+        font-weight: 600;
+        padding: 12px 20px;
+        text-decoration: none;
+      }
+      .cta-button:hover {
+        background: var(--wine-2);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <h1>Esta é a segunda página</h1>
+        <p>Você chegou aqui ao clicar no botão da página inicial.</p>
+        <a class="cta-button" href="index.html">Voltar para a página inicial</a>
+      </div>
+    </main>
+  </body>
+</html>
