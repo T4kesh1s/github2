@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Dados de Consulta</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Cidade</th>
+        <th>Servico</th>
+        <th>Status</th>
+        <th>Valor Mensal</th>
+        <th>Data Cadastro</th>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>Ana Souza</td>
+        <td>Sao Paulo</td>
+        <td>AWS EC2</td>
+        <td>Ativo</td>
+        <td>R$ 320,00</td>
+        <td>2026-01-15</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>Bruno Lima</td>
+        <td>Campinas</td>
+        <td>Azure SQL</td>
+        <td>Ativo</td>
+        <td>R$ 210,00</td>
+        <td>2026-01-20</td>
+      </tr>
+      <tr>
+        <td>1003</td>
+        <td>Carla Mendes</td>
+        <td>Rio de Janeiro</td>
+        <td>Google Cloud Storage</td>
+        <td>Pendente</td>
+        <td>R$ 145,00</td>
+        <td>2026-02-03</td>
+      </tr>
+      <tr>
+        <td>1004</td>
+        <td>Diego Rocha</td>
+        <td>Belo Horizonte</td>
+        <td>Dropbox Business</td>
+        <td>Ativo</td>
+        <td>R$ 98,00</td>
+        <td>2026-02-11</td>
+      </tr>
+      <tr>
+        <td>1005</td>
+        <td>Erika Nunes</td>
+        <td>Curitiba</td>
+        <td>AWS S3</td>
+        <td>Inativo</td>
+        <td>R$ 76,00</td>
+        <td>2026-02-24</td>
+      </tr>
+      <tr>
+        <td>1006</td>
+        <td>Felipe Costa</td>
+        <td>Porto Alegre</td>
+        <td>Google Compute Engine</td>
+        <td>Ativo</td>
+        <td>R$ 410,00</td>
+        <td>2026-03-02</td>
+      </tr>
+      <tr>
+        <td>1007</td>
+        <td>Gabriela Silva</td>
+        <td>Salvador</td>
+        <td>Microsoft 365</td>
+        <td>Pendente</td>
+        <td>R$ 125,00</td>
+        <td>2026-03-10</td>
+      </tr>
+      <tr>
+        <td>1008</td>
+        <td>Henrique Alves</td>
+        <td>Recife</td>
+        <td>Azure Blob Storage</td>
+        <td>Ativo</td>
+        <td>R$ 189,00</td>
+        <td>2026-03-18</td>
+      </tr>
+    </table>
+  </body>
+</html>

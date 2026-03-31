@@ -38,10 +38,51 @@
         border-bottom: 1px solid var(--border);
         background: linear-gradient(120deg, var(--wine) 0%, var(--wine-3) 100%);
         color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
       header .brand {
         font-weight: 700;
         letter-spacing: -0.02em;
+      }
+      .top-menu {
+        position: relative;
+      }
+      .top-menu summary {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.14);
+      }
+      .top-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .top-menu-panel {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        min-width: 190px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #ffffff;
+        box-shadow: 0 10px 25px rgba(122, 15, 36, 0.16);
+        overflow: hidden;
+        z-index: 10;
+      }
+      .top-menu-panel a {
+        display: block;
+        padding: 10px 14px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+      }
+      .top-menu-panel a:hover {
+        background: #fff0f4;
       }
       h2 {
         margin: 18px 0 10px;
@@ -99,24 +140,29 @@
         border-radius: 10px;
         border: 1px solid var(--border);
       }
-      .cta-wrap {
-        margin-top: 20px;
+      .consulta-box {
+        margin-top: 22px;
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fff8fa;
       }
-      .cta-button {
-        display: inline-block;
-        border: 0;
-        border-radius: 999px;
-        background: var(--wine);
-        color: #ffffff;
+      .file-input {
+        display: block;
+        margin-top: 8px;
+      }
+      .file-name {
+        margin: 10px 0 12px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .download-link {
+        color: var(--wine-2);
         font-weight: 600;
-        padding: 12px 20px;
         text-decoration: none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        box-shadow: 0 8px 20px rgba(122, 15, 36, 0.24);
       }
-      .cta-button:hover {
-        background: var(--wine-2);
-        transform: translateY(-1px);
+      .download-link:hover {
+        text-decoration: underline;
       }
       strong {
         color: var(--wine-2);
@@ -131,6 +177,14 @@
   <body>
     <header>
       <div class="brand">Computação em Nuvem</div>
+      <details class="top-menu">
+        <summary>Menu</summary>
+        <nav class="top-menu-panel" aria-label="Navegação principal">
+          <a href="index.html">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="segunda-pagina.html">Segunda página</a>
+        </nav>
+      </details>
     </header>
     <main>
       <div class="card">
@@ -139,7 +193,7 @@
           src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
           alt="Infraestrutura digital conectada representando computacao em nuvem"
         />
-        <h1>O que é Computação em Nuvem?</h1>
+        <h1 id="sobre">O que é Computação em Nuvem?</h1>
         <p>
           Computação em nuvem é a forma de usar recursos de TI (como servidores, armazenamento, bancos
           de dados e softwares) pela internet, sob demanda, sem precisar comprar e manter toda a
@@ -155,10 +209,12 @@
           <li><strong>Google Drive</strong> — armazenamento e compartilhamento de arquivos</li>
           <li><strong>Dropbox</strong> — sincronização e backup de arquivos na nuvem</li>
         </ul>
-        <div class="cta-wrap">
-          <a class="cta-button" href="segunda-pagina.html">
-            Ir para a segunda página
-          </a>
+        <div class="consulta-box">
+          <h2>Consulta por planilha</h2>
+          <p>Selecione um arquivo `.xls` para usar como base de consulta no sistema.</p>
+          <input class="file-input" id="consulta-xls" type="file" accept=".xls,application/vnd.ms-excel" />
+          <p class="file-name" id="arquivo-selecionado">Nenhum arquivo selecionado.</p>
+          <a class="download-link" href="dados-consulta.xls" download>Baixar planilha modelo com dados fictícios</a>
         </div>
         <div class="image-grid" aria-label="Imagens relacionadas a computacao em nuvem">
           <img
@@ -177,5 +233,18 @@
       </div>
     </main>
     <footer class="site-footer">Abra este arquivo no navegador para visualizar a página.</footer>
+    <script>
+      const inputXls = document.getElementById("consulta-xls");
+      const arquivoSelecionado = document.getElementById("arquivo-selecionado");
+
+      inputXls.addEventListener("change", function () {
+        if (!inputXls.files || inputXls.files.length === 0) {
+          arquivoSelecionado.textContent = "Nenhum arquivo selecionado.";
+          return;
+        }
+
+        arquivoSelecionado.textContent = "Arquivo selecionado: " + inputXls.files[0].name;
+      });
+    </script>
   </body>
 </html>

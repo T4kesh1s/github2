@@ -18,6 +18,58 @@
         background: linear-gradient(180deg, #fff7f9 0%, var(--bg) 60%, #f8f9fb 100%);
         color: var(--text);
       }
+      header {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(120deg, var(--wine) 0%, #a31839 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-weight: 700;
+      }
+      .top-menu {
+        position: relative;
+      }
+      .top-menu summary {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.14);
+      }
+      .top-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .top-menu-panel {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        min-width: 190px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 10px 25px rgba(122, 15, 36, 0.16);
+        overflow: hidden;
+        z-index: 10;
+      }
+      .top-menu-panel a {
+        display: block;
+        padding: 10px 14px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+      }
+      .top-menu-panel a:hover {
+        background: #fff0f4;
+      }
       main {
         max-width: 860px;
         margin: 0 auto;
@@ -34,27 +86,187 @@
         margin-top: 0;
         color: var(--wine-2);
       }
-      .cta-button {
-        display: inline-block;
-        border-radius: 999px;
+      .search-wrap {
+        margin-top: 16px;
+        display: grid;
+        gap: 10px;
+      }
+      .search-controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .search-input {
+        flex: 1 1 260px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 1rem;
+      }
+      .search-button {
+        border: 0;
+        border-radius: 10px;
         background: var(--wine);
         color: #fff;
         font-weight: 600;
-        padding: 12px 20px;
-        text-decoration: none;
+        padding: 10px 14px;
+        cursor: pointer;
       }
-      .cta-button:hover {
+      .search-button:hover {
         background: var(--wine-2);
       }
+      .result-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      .result-table th,
+      .result-table td {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        text-align: left;
+      }
+      .result-table th {
+        background: #fff0f4;
+        color: var(--wine-2);
+      }
+      .status {
+        margin-top: 4px;
+        color: #555;
+      }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
   <body>
+    <header>
+      <div class="brand">Computação em Nuvem</div>
+      <details class="top-menu">
+        <summary>Menu</summary>
+        <nav class="top-menu-panel" aria-label="Navegação principal">
+          <a href="index.html">Início</a>
+          <a href="index.html#sobre">Sobre</a>
+          <a href="index.html">Voltar</a>
+        </nav>
+      </details>
+    </header>
     <main>
       <div class="card">
         <h1>Esta é a segunda página</h1>
-        <p>Você chegou aqui ao clicar no botão da página inicial.</p>
-        <a class="cta-button" href="index.html">Voltar para a página inicial</a>
+        <p>Pesquise dados fictícios carregados do arquivo <strong>dados-clientes.xlsx</strong>.</p>
+        <div class="search-wrap">
+          <div class="search-controls">
+            <input
+              id="searchInput"
+              class="search-input"
+              type="text"
+              placeholder="Buscar por nome, cidade, serviço ou status"
+            />
+            <button id="searchButton" class="search-button" type="button">Buscar</button>
+          </div>
+          <div id="statusMessage" class="status">Carregando base de dados...</div>
+          <div id="resultArea"></div>
+        </div>
       </div>
     </main>
+    <script>
+      let clientes = [];
+
+      async function carregarPlanilha() {
+        const status = document.getElementById("statusMessage");
+        try {
+          const response = await fetch("dados-clientes.xlsx");
+          if (!response.ok) {
+            throw new Error("Nao foi possivel carregar o arquivo XLSX.");
+          }
+
+          const arrayBuffer = await response.arrayBuffer();
+          const workbook = XLSX.read(arrayBuffer, { type: "array" });
+          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          clientes = XLSX.utils.sheet_to_json(firstSheet, { defval: "" });
+          status.textContent = "Base carregada. Digite um termo e clique em Buscar.";
+        } catch (error) {
+          status.textContent =
+            "Erro ao carregar dados. Use um servidor local para habilitar a leitura do arquivo XLSX.";
+        }
+      }
+
+      function escaparHtml(texto) {
+        return String(texto)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function renderizarTabela(registros) {
+        const resultArea = document.getElementById("resultArea");
+        if (!registros.length) {
+          resultArea.innerHTML = "<p>Nenhum registro encontrado.</p>";
+          return;
+        }
+
+        const linhas = registros
+          .map(
+            (item) => `
+              <tr>
+                <td>${escaparHtml(item.ID)}</td>
+                <td>${escaparHtml(item.Nome)}</td>
+                <td>${escaparHtml(item.Cidade)}</td>
+                <td>${escaparHtml(item.Servico)}</td>
+                <td>${escaparHtml(item.Status)}</td>
+              </tr>
+            `
+          )
+          .join("");
+
+        resultArea.innerHTML = `
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Servico</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>${linhas}</tbody>
+          </table>
+        `;
+      }
+
+      function buscarDados() {
+        const termo = document.getElementById("searchInput").value.trim().toLowerCase();
+        const status = document.getElementById("statusMessage");
+
+        if (!clientes.length) {
+          status.textContent = "Base ainda nao carregada.";
+          return;
+        }
+
+        if (!termo) {
+          renderizarTabela(clientes);
+          status.textContent = `Mostrando todos os ${clientes.length} registros.`;
+          return;
+        }
+
+        const filtrados = clientes.filter((item) =>
+          Object.values(item).some((valor) => String(valor).toLowerCase().includes(termo))
+        );
+
+        renderizarTabela(filtrados);
+        status.textContent = `${filtrados.length} registro(s) encontrado(s) para "${termo}".`;
+      }
+
+      document.getElementById("searchButton").addEventListener("click", buscarDados);
+      document.getElementById("searchInput").addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          buscarDados();
+        }
+      });
+
+      carregarPlanilha();
+    </script>
   </body>
 </html>

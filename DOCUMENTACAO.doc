@@ -1,0 +1,45 @@
+Documentacao do Projeto - Computacao em Nuvem
+
+1) Visao geral
+Este projeto contem duas paginas HTML estaticas com navegacao por menu suspenso no topo:
+- index.html (pagina principal)
+- segunda-pagina.html (pagina secundaria)
+
+2) Estrutura de navegacao
+No topo de cada pagina existe um menu (botao "Menu") com links de navegacao.
+
+Menu em index.html:
+- Inicio -> index.html
+- Sobre -> ancora na secao principal da propria pagina (#sobre)
+- Segunda pagina -> segunda-pagina.html
+
+Menu em segunda-pagina.html:
+- Inicio -> index.html
+- Sobre -> index.html#sobre
+- Voltar -> index.html
+
+3) Erro corrigido
+Foi corrigido um erro proposital de link em index.html:
+- Antes (incorreto): segunda-pagin.html
+- Depois (correto): segunda-pagina.html
+
+Impacto do erro:
+- O clique no item "Segunda pagina" levava para um arquivo inexistente.
+
+4) Como executar
+Opcao simples:
+- Abra o arquivo index.html diretamente no navegador.
+
+Opcao com servidor local (recomendado):
+- Sirva a pasta do projeto com qualquer servidor HTTP local.
+
+5) Como validar rapidamente
+- Abrir index.html
+- Clicar em Menu -> Segunda pagina
+- Confirmar abertura de segunda-pagina.html
+- Na segunda pagina, abrir Menu -> Voltar
+- Confirmar retorno para index.html
+
+6) Manutencao
+- Se renomear arquivos HTML, atualize todos os href do menu nas duas paginas.
+- Mantenha os nomes dos arquivos e links consistentes para evitar erro 404.
